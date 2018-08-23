@@ -16,7 +16,7 @@ Traveller.prototype.getJourneyEndLocations = function () {
 
 Traveller.prototype.getModesOfTransport = function () {
   return this.journeys.map ((mode) => {
-    return mode.transport;
+    return journey.transport;
   });
 };
 
@@ -32,15 +32,23 @@ Traveller.prototype.getJourneysByMinDistance = function (minDistance) {
   });
 };
 
+// Can use +, reduce coverts it to =+ for us.
 Traveller.prototype.calculateTotalDistanceTravelled = function () {
   return this.journeys.reduce((total, journey) => {
-    return total += journey.distance;
+    return total + journey.distance;
   }, 0);
 };
 
 Traveller.prototype.getUniqueModesOfTransport = function () {
-  return Array.from(new Set(this.getModesOfTransport()))
+  return [...new Set(this.getModesOfTransport())];
 };
+
+// Traveller.prototype.getUniqueModesOfTransport = function () {
+//   let transportation = this.getModesOfTransport();
+//   return transportation.filter((mode, index) => {
+//     return transportation.indexOf(mode) === index;
+//   })
+// };
 
 module.exports = Traveller;
 
